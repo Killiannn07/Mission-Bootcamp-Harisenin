@@ -1,0 +1,166 @@
+#register-page {
+  background-image: url(./assets/background\ register.jpg);
+  background-size: cover;
+  min-height: 100vh;
+  background-position: center;
+  font-family: Lato, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+#register-page .register-container {
+  background-color: #181a1c;
+  opacity: 84%;
+  padding: 40px;
+  border-radius: 8px;
+  width: 500px;
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+}
+#register-page .register-container .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px auto;
+}
+
+#register-page .register-container .logo img {
+  width: clamp(20px, 10vw, 50px);
+  height: 50px;
+  object-fit: contain;
+}
+
+#register-page .register-container .logo img.chill-logo {
+  width: clamp(50px, 20vw, 100px);
+  height: 50px;
+  object-fit: contain;
+}
+
+#register-page .register-container h1 {
+  color: #ffffff;
+  text-align: center;
+  margin: 0 4;
+  font-weight: 700;
+  font-size: clamp(18px, 5vw, 32px);
+}
+#register-page .register-container h3 {
+  color: #ffffff;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-size: clamp(10px, 3vw, 16px);
+}
+
+#register-page .register-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 37px;
+}
+
+#register-page .register-container form p {
+  color: #ffffff;
+  font-size: clamp(10px, 3vw, 18px);;
+  text-align: left;
+  margin: 0;
+  font-weight: 400;
+  padding-bottom: 6px;
+  padding-top: 6px;
+}
+
+#register-page .register-container form input {
+  padding: 15px;
+  border: 1px solid #E7E3FC;
+  border-radius: 24px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: transparent;
+  color: #ffffff;
+}
+
+#register-page .register-container form .password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#register-page .register-container form .password-wrapper .password-input {
+  padding-right: 45px;
+}
+
+#register-page .register-container form .password-wrapper .eye-toggle {
+  position: absolute;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+#register-page .register-container form .password-wrapper .eye-toggle img {
+  width: 20px;
+  height: 20px;
+}
+
+#register-page .register-container form .login-link {
+  color: #ffffff;
+  font-size: clamp(10px, 2vw, 16px);
+  text-align: left;
+  margin: 0;
+}
+
+#register-page .register-container form .login-link a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#register-page .register-container form .login-link a:hover {
+  text-decoration: underline;
+}
+
+#register-page .register-container .register-options {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 40px;
+}
+
+#register-page .register-container .register-options .register-btn {
+  padding: 15px;
+  font-size: clamp(10px, 2vw, 16px);
+  border: 1px solid #E7E3FC;
+  border-radius: 24px;
+  width: 100%;
+  background-color: #3D4142;
+  color: #ffffff;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+#register-page .register-container .register-options p {
+  color: #9d9ea1;
+  font-size: clamp(10px, 2vw, 16px);
+  text-align: center;
+  margin: 0;
+}
+
+#register-page .register-container .register-options .google-btn {
+  background-color: transparent;
+  padding: 15px;
+  border: 1px solid #E7E3FC;
+  color: #ffffff;
+  border-radius: 24px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: clamp(10px, 2vw, 16px)
+}
