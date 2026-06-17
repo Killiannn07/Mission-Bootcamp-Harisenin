@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body id="login-page">
+    <div class="login-container">
+      <div class="logo">
+        <img src="./assets/movie-open.svg" alt="Logo" />
+        <img class="chill-logo" src="./assets/CHILL.svg" />
+      </div>
+      <div class="div">
+        <h1>Masuk</h1>
+        <h3>Selamat Datang kembali!</h3>
+      </div>
+      <form>
+        <div>
+          <p>Username</p>
+          <input type="text" placeholder="Masukkan Username" required />
+        </div>
+        <div>
+          <p>Kata Sandi</p>
+          <div class="password-wrapper">
+            <input
+              type="password"
+              placeholder="Masukkan Kata Sandi"
+              class="password-input"
+              required
+            />
+            <button
+              type="button"
+              class="eye-toggle"
+              onclick="togglePassword(this)"
+            >
+              <img src="./assets/eye-off.svg" alt="Toggle Password" />
+            </button>
+          </div>
+          <div class="password-options">
+            <p class="login-link">
+              Belum punya akun? <a href="register.html">Daftar</a>
+            </p>
+            <a href="" class="forgot-password">Lupa kata sandi?</a>
+          </div>
+        </div>
+      </form>
+      <div class="login-options">
+        <button type="submit" class="login-btn">Masuk</button>
+        <p>Atau</p>
+        <button class="google-btn">
+          <img src="./assets/google.svg" alt="Google Icon" />Masuk dengan Google
+        </button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
