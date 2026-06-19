@@ -7,22 +7,189 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body id="landing-page">
-    <div class="navbar-section">
+    <!-- Navbar Section -->
+    <section class="navbar-section">
       <div class="logo">
         <img src="./assets/movie-open.svg" alt="Logo" />
         <img src="./assets/CHILL.svg" alt="Logo" />
       </div>
       <nav class="navbar">
         <ul class="nav-list">
-          <li class="nav-item"><a href="">Series</a></li>
-          <li class="nav-item"><a href="">Film</a></li>
-          <li class="nav-item"><a href="">Daftar Saya</a></li>
+          <li class="nav-item"><a href="#">Series</a></li>
+          <li class="nav-item"><a href="#">Film</a></li>
+          <li class="nav-item"><a href="#">Daftar Saya</a></li>
         </ul>
       </nav>
-    </div>
+      <div class="avatar">
+        <img src="./assets/avatar.png" alt="Avatar" />
+        <img class="arrow" src="./assets/KeyboardArrowDown.png" alt="arrow" />
+      </div>
+    </section>
 
-    
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="content">
+          <h1>Duty After School</h1>
+          <p>
+            Sebuah benda tak dikenal mengambil alih dunia. Dalam keputusasaan,
+            Departemen Pertahanan mulai merekrut lebih banyak tentara, termasuk
+            siswa sekolah menengah. Mereka pun segera menjadi pejuang garis
+            depan dalam perang
+          </p>
+        </div>
+
+        <div class="hero-btn">
+          <div class="btn-left">
+            <button class="btn">Mulai</button>
+            <button class="btn">Selengkapnya</button>
+            <img src="./assets/18+.png" />
+          </div>
+          <div class="btn-right">
+            <img src="./assets/volume.png" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section landscape (thumbnail melebar) -->
+    <section class="movie-section">
+      <h2>Melanjutkan Tonton Film</h2>
+      <div class="carousel-wrapper">
+        <button class="carousel-btn prev" aria-label="Sebelumnya">
+          <span>‹</span>
+        </button>
+        <div class="carousel-track">
+          <div class="movie-card card-landscape">
+            <img
+              src="./assets/film/image 215_landscape.png"
+              alt="Duty After School"
+            />
+            <p>Duty After School</p>
+          </div>
+          <div class="movie-card card-landscape">
+            <img src="./assets/film/image 216_landscape.png" alt="Blue Lock" />
+            <p>Blue Lock</p>
+          </div>
+          <div class="movie-card card-landscape">
+            <img
+              src="./assets/film/image 217+landscape.png"
+              alt="Anime Selection"
+            />
+            <p>Anime Selection</p>
+          </div>
+          <div class="movie-card card-landscape">
+            <img
+              src="./assets/film/image 218_landscape.png"
+              alt="Latest Release"
+            />
+            <p>Latest Release</p>
+          </div>
+          <div class="movie-card card-landscape">
+            <img
+              src="./assets/film/image 219_landscape.png"
+              alt="Popular Now"
+            />
+            <p>Popular Now</p>
+          </div>
+        </div>
+        <button class="carousel-btn next" aria-label="Selanjutnya">
+          <span>›</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Section portrait (poster film) -->
+    <section class="movie-section">
+      <h2>Film Trending</h2>
+      <div class="carousel-wrapper">
+        <button class="carousel-btn prev" aria-label="Sebelumnya">
+          <span>‹</span>
+        </button>
+        <div class="carousel-track">
+          <div class="movie-card card-portrait">
+            <img
+              src="./assets/film/image 215_landscape.png"
+              alt="The Tomorrow War"
+            />
+            <p>The Tomorrow War</p>
+          </div>
+          <div class="movie-card card-portrait">
+            <img
+              src="./assets/film/image 216_landscape.png"
+              alt="Guardians of the Galaxy"
+            />
+            <p>Guardians of the Galaxy</p>
+          </div>
+          <div class="movie-card card-portrait">
+            <img
+              src="./assets/film/image 217+landscape.png"
+              alt="Anime Series"
+            />
+            <p>Anime Series</p>
+          </div>
+          <div class="movie-card card-portrait">
+            <img
+              src="./assets/film/image 218_landscape.png"
+              alt="Action Movie"
+            />
+            <p>Action Movie</p>
+          </div>
+        </div>
+        <button class="carousel-btn next" aria-label="Selanjutnya">
+          <span>></span>
+        </button>
+      </div>
+    </section>
 
     <script src="script.js"></script>
   </body>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="./assets/CHILL.svg" alt="CHILL Logo" />
+        <p>@2023 Chill All Rights Reserved.</p>
+      </div>
+
+      <div class="footer-group">
+        <a class="footer-toggle"> Genre <span class="arrow">›</span> </a>
+        <div class="footer-links">
+          <div class="footer-col">
+            <a href="#">Aksi</a>
+            <a href="#">Anak-anak</a>
+            <a href="#">Anime</a>
+            <a href="#">Britania</a>
+          </div>
+          <div class="footer-col">
+            <a href="#">Drama</a>
+            <a href="#">Fantasi Ilmiah & Fantasi</a>
+            <a href="#">Kejahatan</a>
+            <a href="#">KDrama</a>
+          </div>
+          <div class="footer-col">
+            <a href="#">Komedi</a>
+            <a href="#">Petualangan</a>
+            <a href="#">Perang</a>
+            <a href="#">Romantis</a>
+          </div>
+          <div class="footer-col">
+            <a href="#">Sains & Alam</a>
+            <a href="#">Thriller</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-group">
+        <a class="footer-toggle"> Bantuan <span class="arrow">›</span> </a>
+        <div class="footer-links">
+          <div class="footer-col">
+            <a href="#">FAQ</a>
+            <a href="#">Kontak Kami</a>
+            <a href="#">Privasi</a>
+            <a href="#">Syarat & Ketentuan</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
 </html>
