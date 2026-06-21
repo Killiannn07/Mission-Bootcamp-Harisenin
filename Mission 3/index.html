@@ -23,6 +23,20 @@
       <div class="avatar">
         <img src="./assets/avatar.png" alt="Avatar" />
         <img class="arrow" src="./assets/KeyboardArrowDown.png" alt="arrow" />
+        <div class="avatar-dropdown">
+          <a href="#" class="dropdown-item">
+            <span class="dropdown-icon"><img src="./assets/account.svg"/></span>
+            <span>Profil Saya</span>
+          </a>
+          <a href="#" class="dropdown-item">
+            <span class="dropdown-icon"><img src="./assets/star.svg"/></span>
+            <span>Ubah Premium</span>
+          </a>
+          <a href="#" class="dropdown-item">
+            <span class="dropdown-icon"><img src="./assets/exit.svg"/></span>
+            <span>Keluar</span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -42,17 +56,21 @@
         <div class="hero-btn">
           <div class="btn-left">
             <button class="btn">Mulai</button>
-            <button class="btn">Selengkapnya</button>
-            <img src="./assets/18+.png" />
+            <button class="btn">
+              <img class="info" src="./assets/Vector.svg" alt="info" />
+              Selengkapnya
+            </button>
+            <img src="./assets/18+.png" alt="18+" />
           </div>
           <div class="btn-right">
-            <img src="./assets/volume.png" />
+            <img src="./assets/volume.png" alt="volume" />
           </div>
+        </div>
         </div>
       </div>
     </section>
 
-    <!-- Section landscape (thumbnail melebar) -->
+    <!-- Section lanjutkan nonton film -->
     <section class="movie-section">
       <h2>Melanjutkan Tonton Film</h2>
       <div class="carousel-wrapper">
@@ -61,36 +79,84 @@
         </button>
         <div class="carousel-track">
           <div class="movie-card card-landscape">
-            <img
-              src="./assets/film/image 215_landscape.png"
-              alt="Duty After School"
-            />
-            <p>Duty After School</p>
+            <div class="card-thumb">
+              <img src="./assets/film/image 215_landscape.png" alt="film korea" />
+              <div class="card-overlay">
+                <p class="card-title">Pilm Korea</p>
+              </div>
+              <div class="card-rating">
+                <span class="star">★</span> 4.2/5
+              </div>
+            </div>
           </div>
+
           <div class="movie-card card-landscape">
-            <img src="./assets/film/image 216_landscape.png" alt="Blue Lock" />
-            <p>Blue Lock</p>
+            <div class="card-thumb">
+              <img src="./assets/film/image 216_landscape.png" alt="Shazam" />
+
+              <div class="card-overlay">
+                <p class="card-title">Shazam</p>
+              </div>
+              <div class="card-rating">
+                <span class="star">★</span> 4.6/5
+              </div>
+            </div>
           </div>
+
           <div class="movie-card card-landscape">
-            <img
-              src="./assets/film/image 217+landscape.png"
-              alt="Anime Selection"
-            />
-            <p>Anime Selection</p>
+            <div class="card-thumb">
+              <img src="./assets/film/image 217+landscape.png" alt="Avatar" />
+              <div class="card-overlay">
+                <p class="card-title">Avatar</p>
+              </div>
+              <div class="card-rating">
+                <span class="star">★</span> 4.8/5
+              </div>
+            </div>
           </div>
+
           <div class="movie-card card-landscape">
-            <img
-              src="./assets/film/image 218_landscape.png"
-              alt="Latest Release"
-            />
-            <p>Latest Release</p>
+            <div class="card-thumb">
+              <img src="./assets/film/image 218_landscape.png" alt="Fast X" />
+              <div class="card-overlay">
+                <p class="card-title">Fast X</p>
+              </div>
+              <div class="card-rating">
+                <span class="star">★</span> 4.7/5
+              </div>
+            </div>
           </div>
+
           <div class="movie-card card-landscape">
-            <img
-              src="./assets/film/image 219_landscape.png"
-              alt="Popular Now"
-            />
-            <p>Popular Now</p>
+            <div class="card-thumb">
+              <img src="./assets/film/image 219_landscape.png" alt="Blue Lock" />
+
+              
+              <span class="badge-new">Episode Baru</span>
+
+              <div class="card-overlay">
+                <p class="card-title">Blue Lock</p>
+              </div>
+              <div class="card-rating">
+                <span class="star">★</span> 3.9/5
+              </div>
+            </div>
+          </div>
+
+          <div class="movie-card card-landscape">
+            <div class="card-thumb">
+              <img src="./assets/film/image 220_landscape.png" alt="Mermaid" />
+
+              
+              <span class="badge-new">Episode Baru</span>
+
+              <div class="card-overlay">
+                <p class="card-title">Mermaid</p>
+              </div>
+              <div class="card-rating">
+                <span class="star">★</span> 4.2/5
+              </div>
+            </div>
           </div>
         </div>
         <button class="carousel-btn next" aria-label="Selanjutnya">
@@ -99,7 +165,58 @@
       </div>
     </section>
 
-    <!-- Section portrait (poster film) -->
+    <!-- Top Rating Film -->
+    <section class="movie-section">
+      <h2>Top Rating Film dan Series Hari ini</h2>
+      <div class="carousel-wrapper">
+        <button class="carousel-btn prev" aria-label="Sebelumnya">
+          <span>‹</span>
+        </button>
+        <div class="carousel-track">
+          <div class="movie-card card-portrait">
+            <img
+              src="./assets/film/image 223_potrait.png"
+              alt="The Tomorrow War"
+            />
+          </div>
+          <div class="movie-card card-portrait">
+            <img
+              src="./assets/film/image 226_potrait.png"
+              alt="Guardians of the Galaxy"
+            />
+          </div>
+          <div class="movie-card card-portrait">
+            <img
+              src="./assets/film/image 227_potrait.png"
+              alt="Guardians of the Galaxy"
+            />
+          </div>
+          <div class="movie-card card-portrait">
+            <img
+              src="./assets/film/image 228_potrait.png"
+              alt="Guardians of the Galaxy"
+            />
+          </div>
+          <div class="movie-card card-portrait">
+            <img
+              src="./assets/film/image 234_potrait.png"
+              alt="Guardians of the Galaxy"
+            />
+          </div>
+          <div class="movie-card card-portrait">
+            <img
+              src="./assets/film/image 235_potrait.png"
+              alt="Guardians of the Galaxy"
+            />
+          </div>
+        </div>
+        <button class="carousel-btn next" aria-label="Selanjutnya">
+          <span>›</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Film Trending -->
     <section class="movie-section">
       <h2>Film Trending</h2>
       <div class="carousel-wrapper">
@@ -109,85 +226,145 @@
         <div class="carousel-track">
           <div class="movie-card card-portrait">
             <img
-              src="./assets/film/image 215_landscape.png"
+              src="./assets/film/image 223_potrait.png"
               alt="The Tomorrow War"
             />
-            <p>The Tomorrow War</p>
+            <span class="badge-top">Top <br> 10</span>
           </div>
           <div class="movie-card card-portrait">
             <img
-              src="./assets/film/image 216_landscape.png"
+              src="./assets/film/image 226_potrait.png"
               alt="Guardians of the Galaxy"
             />
-            <p>Guardians of the Galaxy</p>
+            <span class="badge-top">Top <br> 10</span>
           </div>
           <div class="movie-card card-portrait">
             <img
-              src="./assets/film/image 217+landscape.png"
-              alt="Anime Series"
+              src="./assets/film/image 227_potrait.png"
+              alt="Guardians of the Galaxy"
             />
-            <p>Anime Series</p>
+            <span class="badge-top">Top <br> 10</span>
           </div>
           <div class="movie-card card-portrait">
             <img
-              src="./assets/film/image 218_landscape.png"
-              alt="Action Movie"
+              src="./assets/film/image 228_potrait.png"
+              alt="Guardians of the Galaxy"
             />
-            <p>Action Movie</p>
+            <span class="badge-top">Top <br> 10</span>
+          </div>
+          <div class="movie-card card-portrait">
+            <img
+              src="./assets/film/image 234_potrait.png"
+              alt="Guardians of the Galaxy"
+            />
+            <span class="badge-top">Top <br> 10</span>
+          </div>
+          <div class="movie-card card-portrait">
+            <img
+              src="./assets/film/image 235_potrait.png"
+              alt="Guardians of the Galaxy"
+            />
+            <span class="badge-top">Top <br> 10</span>
           </div>
         </div>
         <button class="carousel-btn next" aria-label="Selanjutnya">
-          <span>></span>
+          <span>›</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Rilis Baru -->
+    <section class="movie-section">
+      <h2>Rilis Baru</h2>
+      <div class="carousel-wrapper">
+        <button class="carousel-btn prev" aria-label="Sebelumnya">
+          <span>‹</span>
+        </button>
+        <div class="carousel-track">
+          <div class="movie-card card-portrait">
+            <img
+              src="./assets/film/image 223_potrait.png"
+              alt="The Tomorrow War"
+            />
+            <span class="badge-new">Episode Baru</span>
+          </div>
+          <div class="movie-card card-portrait">
+            <img
+              src="./assets/film/image 226_potrait.png"
+              alt="Guardians of the Galaxy"
+            />
+          </div>
+          <div class="movie-card card-portrait">
+            <img
+              src="./assets/film/image 227_potrait.png"
+              alt="Guardians of the Galaxy"
+            />
+            <span class="badge-top">Top <br> 10</span>
+          </div>
+          <div class="movie-card card-portrait">
+            <img
+              src="./assets/film/image 228_potrait.png"
+              alt="Guardians of the Galaxy"
+            />
+          </div>
+          <div class="movie-card card-portrait">
+            <img
+              src="./assets/film/image 234_potrait.png"
+              alt="Guardians of the Galaxy"
+            />
+          </div>
+          <div class="movie-card card-portrait">
+            <img
+              src="./assets/film/image 235_potrait.png"
+              alt="Guardians of the Galaxy"
+            />
+          </div>
+        </div>
+        <button class="carousel-btn next" aria-label="Selanjutnya">
+          <span>›</span>
         </button>
       </div>
     </section>
 
     <script src="script.js"></script>
   </body>
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <img src="./assets/CHILL.svg" alt="CHILL Logo" />
-        <p>@2023 Chill All Rights Reserved.</p>
+<footer class="site-footer">
+    <div class="footer-brand">
+      <div class="logo">
+        <img src="./assets/movie-open.svg" />
+        <img src="./assets/CHILL.svg" />
       </div>
+      <p class="copyright">@2023 Chill All Rights Reserved.</p>
+    </div>
 
-      <div class="footer-group">
-        <a class="footer-toggle"> Genre <span class="arrow">›</span> </a>
-        <div class="footer-links">
-          <div class="footer-col">
-            <a href="#">Aksi</a>
-            <a href="#">Anak-anak</a>
-            <a href="#">Anime</a>
-            <a href="#">Britania</a>
-          </div>
-          <div class="footer-col">
-            <a href="#">Drama</a>
-            <a href="#">Fantasi Ilmiah & Fantasi</a>
-            <a href="#">Kejahatan</a>
-            <a href="#">KDrama</a>
-          </div>
-          <div class="footer-col">
-            <a href="#">Komedi</a>
-            <a href="#">Petualangan</a>
-            <a href="#">Perang</a>
-            <a href="#">Romantis</a>
-          </div>
-          <div class="footer-col">
-            <a href="#">Sains & Alam</a>
-            <a href="#">Thriller</a>
-          </div>
+    <div class="footer-links">
+      <div class="link-group">
+        <h3>Genre <span class="chevron">›</span></h3>
+        <div class="link-content genre-grid">
+          <a href="#">Aksi</a>
+          <a href="#">Anak-anak</a>
+          <a href="#">Anime</a>
+          <a href="#">Britania</a>
+          <a href="#">Drama</a>
+          <a href="#">Fantasi Ilmiah & Fantasi</a>
+          <a href="#">Kejahatan</a>
+          <a href="#">KDrama</a>
+          <a href="#">Komedi</a>
+          <a href="#">Petualangan</a>
+          <a href="#">Perang</a>
+          <a href="#">Romantis</a>
+          <a href="#">Sains & Alam</a>
+          <a href="#">Thriller</a>
         </div>
       </div>
 
-      <div class="footer-group">
-        <a class="footer-toggle"> Bantuan <span class="arrow">›</span> </a>
-        <div class="footer-links">
-          <div class="footer-col">
-            <a href="#">FAQ</a>
-            <a href="#">Kontak Kami</a>
-            <a href="#">Privasi</a>
-            <a href="#">Syarat & Ketentuan</a>
-          </div>
+      <div class="link-group">
+        <h3>Bantuan <span class="chevron">›</span></h3>
+        <div class="link-content help-list">
+          <a href="#">FAQ</a>
+          <a href="#">Kontak Kami</a>
+          <a href="#">Privasi</a>
+          <a href="#">Syarat & Ketentuan</a>
         </div>
       </div>
     </div>

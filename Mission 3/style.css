@@ -41,10 +41,81 @@
   display: flex;
   align-items: center;
 }
+.avatar {
+  position: relative;
+}
+
 .avatar .arrow {
   color: white;
   scale: 0.8;
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.avatar.active .arrow {
+  transform: rotate(180deg);
+}
+
+
+.avatar-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #22282a;
+  border: 1px solid #2d2f33;
+  border-radius: 8px;
+  min-width: 200px;
+  margin-top: 16px;
+  display: none;
+  flex-direction: column;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.avatar.active .avatar-dropdown {
+  display: flex;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-item:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+.dropdown-item:last-child {
+  border-radius: 0 0 8px 8px;
+}
+
+.dropdown-item:hover {
+  background-color: #2f3334;
+  color: #3b82f6;
+}
+
+.dropdown-icon {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.dropdown-icon img {
+  width: 20px;
+  height: 20px;
+}
+
+.dropdown-item:hover .dropdown-icon img {
+  color: #3b82f6;
 }
 
 /* Hero */
@@ -101,17 +172,30 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  gap: 16px;
 }
 
 .btn-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
 .btn {
-  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  height: 44px;
   background-color: #22282a;
   color: white;
   font-size: 15px;
@@ -120,6 +204,15 @@
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.btn .info {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn:hover {
@@ -136,14 +229,15 @@
   transform: scale(1.05);
 }
 
-.btn-left img {
-  width: 40px;
-  height: auto;
+.btn-left > img {
+  width: 44px;
+  height: 44px;
 }
 
 .btn-right img {
-  width: 35px;
+  width: 45px;
   height: auto;
+  align-items: center;
 }
 
 /* Movie Section */
@@ -162,26 +256,22 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 16px;
+  width: 100%;
 }
 
 .carousel-track {
   display: flex;
-  gap: 16px;
+  gap: 28px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   padding: 8px 0;
-  flex: 1;
-  -webkit-overflow-scrolling: touch;
+  width: 100%;
   scrollbar-width: none;
 }
 
-.carousel-track::-webkit-scrollbar {
-  display: none;
-}
-
 .carousel-btn {
+  position: absolute;
   flex-shrink: 0;
   background-color: rgba(255, 255, 255, 0.1);
   color: white;
@@ -196,19 +286,23 @@
   font-size: 24px;
   transition: all 0.3s ease;
   padding: 0;
+  z-index: 10;
+}
+
+.carousel-btn.prev {
+  left: 0;
+  background-color: #2f3334;
+}
+
+.carousel-btn.next {
+  right: 0;
+  background-color: #2f3334;
 }
 
 .carousel-btn:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(50, 50, 50, 0.2);
 }
 
-.carousel-btn.disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* Base — sama untuk semua kartu */
 .movie-card {
   flex: 0 0 auto;
   scroll-snap-align: start;
@@ -227,25 +321,87 @@
   display: block;
 }
 
-.movie-card p {
-  font-size: 13px;
-  margin-top: 8px;
-  color: #ccc;
-  white-space: nowrap;
+.card-thumb {
+  position: relative;
   overflow: hidden;
-  text-overflow: ellipsis;
+  border-radius: 8px;
 }
 
-/* Variasi: Portrait (poster film, rasio 2:3) */
+.card-thumb img {
+  width: 100%;
+  display: block;
+}
+
+.badge-new {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.badge-top {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  background: #b71f1d;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 0px 4px 0px 4px;
+  font-weight: 400;
+  padding: 8px 5px;
+  z-index: 2;
+}
+
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 12px 12px;
+}
+
+.card-title {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.card-rating {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #fff;
+  background: transparent;
+  padding: 3px 8px;
+  z-index: 2;
+}
+
+.card-rating .star {
+  color: #facc15;
+}
+
 .card-portrait {
-  width: 160px;
+  position: relative;
+  width: 234px;
+  height: 365px;
 }
 
 .card-portrait img {
   aspect-ratio: 2/3;
 }
 
-/* Variasi: Landscape (thumbnail, rasio 16:9) */
 .card-landscape {
   width: 260px;
 }
@@ -254,134 +410,89 @@
   aspect-ratio: 16/9;
 }
 
-/* ===== MOBILE ===== */
-@media (max-width: 768px) {
-  .movie-section {
-    padding: 24px 20px;
-  }
-
-  .movie-section h2 {
-    font-size: 18px;
-    margin: 0 0 16px 0;
-  }
-
-  .carousel-wrapper {
-    gap: 12px;
-  }
-
-  .carousel-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 20px;
-  }
-
-  .carousel-btn.prev {
-    position: absolute;
-    left: 0;
-    z-index: 10;
-  }
-
-  .carousel-btn.next {
-    position: absolute;
-    right: 0;
-    z-index: 10;
-  }
-
-  .carousel-track {
-    margin: 0 28px;
-  }
-
-  .card-portrait {
-    width: 110px;
-  }
-
-  .card-landscape {
-    width: 180px;
-  }
-}
-
 /* Footer */
-.footer {
-  background: transparent;
+.site-footer {
+  background-color: #181a1c;
   padding: 60px 80px;
-  font-size: 13px;
-  border-top: 1px solid #333;
+  display: flex;
+  justify-content: space-between;
+  gap: 270px;
+  border-top: 1px solid #2d2f33;
 }
 
-.footer-inner {
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 180px 1fr 1fr;
-  gap: 80px;
-  align-items: flex-start;
+a {
+  text-decoration: none;
+  color: #9ca3af;
+  font-size: 14px;
+  transition: color 0.2s ease-in-out;
 }
 
+a:hover {
+  color: #ffffff;
+}
+
+/* --- Brand Section (Kiri) --- */
 .footer-brand {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  min-width: 250px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
   gap: 12px;
 }
 
-.footer-brand img {
-  width: 100px;
-  height: auto;
+.logo img {
+  width: 80px;
 }
 
-.footer-brand .logo {
-  display: none;
+.copyright {
+  color: #9ca3af;
+  font-size: 14px;
+  margin-top: 10px;
 }
 
-.footer-brand p {
-  font-size: 12px;
-  color: #666;
-  margin: 0;
+/* --- Links Section (Kanan) --- */
+.footer-links {
+  display: flex;
+  gap: 150px;
+  flex: 1;
 }
 
-/* Group (Genre / Bantuan) */
-.footer-group {
+.link-group h3 {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chevron {
+  display: none; /* Disembunyikan di Desktop */
+}
+
+/* --- Grid untuk Genre --- */
+.genre-grid {
+  display: grid;
+  /* Mengurutkan ke bawah dulu (kolom), baru ke samping */
+  grid-template-rows: repeat(4, auto);
+  grid-auto-flow: column;
+  column-gap: 50px;
+  row-gap: 16px;
+}
+
+/* --- List untuk Bantuan --- */
+.help-list {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
-
-.footer-group h3 {
-  color: #fff;
-  margin: 0;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.footer-toggle {
-  max-width: 200px;
-  text-align: left;
-  background: transparent;
-  color: white;
-}
-
-.footer-links {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-}
-
-.footer-col {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.footer-col a {
-  color: #aaa;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: color 0.2s;
-  font-size: 13px;
-}
-
-.footer-col a:hover {
-  color: #fff;
-}
-
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .navbar-section {
@@ -437,60 +548,60 @@
   }
 
   .hero-content .btn {
-    padding: 8px 18px;
-    font-size: 10px;
+    padding: 10px 20px;
+    height: 40px;
+    font-size: 12px;
+  }
+
+  .hero-content .btn .info {
+    width: 16px;
+    height: 16px;
   }
 
   .hero-content img[src*="18+"] {
-    width: 30px;
+    width: 32px;
+    height: 32px;
   }
 
   .hero-content img[src*="volume"] {
-    width: 25px;
+    width: 32px;
   }
 
-  .footer {
-    padding: 20px;
-    border-top: 1px solid #333;
+  .movie-section {
+    padding: 24px 20px;
   }
 
-  .footer-inner {
-    grid-template-columns: 1fr;
-    gap: 0;
+  .movie-section h2 {
+    font-size: 18px;
+    margin: 0 0 16px 0;
   }
 
-  .footer-brand {
-    margin-bottom: 24px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid #333;
+  .carousel-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
   }
 
-  .footer-brand img {
-    width: 80px;
+  .carousel-track {
+    padding: 12px 0;
   }
 
-  .footer-group {
-    border-bottom: 1px solid #333;
-    padding: 16px 0;
+  .card-portrait {
+    width: 95px;
+    height: 145px;
   }
 
-  .footer-toggle {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 15px;
-    font-weight: 500;
-    padding: 0;
-    cursor: pointer;
-    outline: none;
+  .card-landscape {
+    width: 180px;
   }
-
-  .footer-toggle:hover {
-    color: #aaa;
+  .badge-new {
+    font-size: 6px;
+    font-weight: 200;
+    top: 5px;
+    left: 5px;
+  }
+  .badge-top {
+    font-size: 8px;
   }
 
   .arrow {
@@ -499,21 +610,84 @@
     display: inline-block;
   }
 
-  /* Links tersembunyi di mobile secara default */
-  .footer-links {
-    display: none;
+  .site-footer {
     flex-direction: column;
-    gap: 12px;
-    margin-top: 16px;
-    grid-template-columns: none;
+    padding: 30px 20px;
+    background-color: #1a1c1e;
+    gap: 0;
   }
 
-  /* Saat accordion terbuka */
-  .footer-group.open .footer-links {
+  .footer-brand {
+    margin-bottom: 20px;
+  }
+
+  .logo-text {
+    font-size: 24px;
+  }
+
+  .copyright {
+    font-size: 12px;
+    margin-top: 5px;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .link-group {
+    border-bottom: 1px solid #2d2f33;
+  }
+
+  .link-group h3 {
+    padding: 18px 0;
+    margin-bottom: 0;
+    font-size: 15px;
+    cursor: pointer;
+    /* Mencegah teks terblokir/tersorot biru saat diklik cepat di HP */
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  /* Chevron default menghadap kanan */
+  .chevron {
+    display: inline-block;
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 400;
+    transition: transform 0.3s ease; /* Animasi memutar */
+  }
+
+  /* Menyembunyikan konten secara default */
+  .link-content {
+    display: none;
+    padding-bottom: 18px;
+  }
+
+  /* --- KONDISI SAAT AKTIF (DIKLIK) --- */
+
+  /* Tampilkan konten ketika active */
+  .link-group.active .link-content {
+    display: block;
+  }
+
+  /* Putar panah ke bawah (90 derajat) */
+  .link-group.active .chevron {
+    transform: rotate(90deg);
+  }
+
+  /* Tampilkan daftar Bantuan menjadi susunan ke bawah */
+  .link-group.active .help-list {
     display: flex;
   }
 
-  .footer-group.open .arrow {
-    transform: rotate(90deg);
+  /* Tampilkan daftar Genre menjadi 2 kolom di mobile agar rapi */
+  .link-group.active .genre-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dibagi 2 kolom */
+    grid-template-rows: auto;
+    grid-auto-flow: row;
+    column-gap: 20px;
+    row-gap: 16px;
   }
 }
