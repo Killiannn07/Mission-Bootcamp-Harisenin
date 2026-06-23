@@ -1,0 +1,366 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profile-card {
+  background: #E5D4ED;
+  border-radius: 16px;
+  padding: 20px 20px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #eeedfe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: #3c3489;
+  flex-shrink: 0;
+}
+.profile-info p:first-child {
+  font-size: 16px;
+  font-weight: 500;
+}
+.profile-info p:last-child {
+  font-size: 13px;
+  margin-top: 2px;
+}
+.time-box {
+  text-align: right;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.time-day {
+  font-size: 13px;
+}
+.time-date {
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.input-card {
+  background: #e5d4ed;
+
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 1rem;
+}
+.input-card label {
+  font-size: 13px;
+  display: block;
+  margin-bottom: 6px;
+}
+textarea {
+  width: 100%;
+  resize: none;
+  font-size: 14px;
+  padding: 10px 12px;
+  border: 0.5px solid #514f59;
+  border-radius: 10px;
+  background: transparent;
+  outline: none;
+  height: 72px;
+}
+
+.row2 {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  min-width: 140px;
+}
+.field-group label {
+  font-size: 12px;
+}
+
+input[type="date"] {
+  width: 100%;
+  padding: 7px 10px;
+  border: 0.5px solid #514f59;
+  border-radius: 10px;
+  background: transparent;
+  font-size: 13px;
+  outline: none;
+}
+
+
+.priority-row {
+  display: flex;
+  gap: 8px;
+  flex: 2;
+  min-width: 200px;
+}
+.prio-btn {
+  flex: 1;
+  padding: 7px 4px;
+  border: 0.5px solid #514f59;
+  border-radius: 10px;
+  background: transparent;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.prio-btn.active-low {
+  background: #eaf3de;
+  border-color: #639922;
+  color: #27500a;
+}
+.prio-btn.active-medium {
+  background: #faeeda;
+  border-color: #ba7517;
+  color: #633806;
+}
+.prio-btn.active-high {
+  background: #faece7;
+  border-color: #993c1d;
+  color: #4a1b0c;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  background: #5941a9;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+
+  transition: background 0.15s;
+  margin-top: 10px;
+}
+.submit-btn:hover {
+  background: #3c3489;
+}
+.submit-btn:active {
+  transform: scale(0.98);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.section-title {
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.count-badge {
+  background: #e5d4ed;
+  border: none;
+  border-radius: 20px;
+  padding: 1px 8px;
+  font-size: 12px;
+}
+.overdue-badge {
+  background: #faece7;
+  border: 0.5px solid #d85a30;
+  border-radius: 20px;
+  padding: 1px 8px;
+  font-size: 12px;
+  color: #4a1b0c;
+}
+.delete-all-btn {
+  font-size: 12px;
+  color: red;
+  background: none;
+  border: 0.5px solid salmon;
+  border-radius: 10px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.delete-all-btn:hover {
+  background: rgb(211, 43, 24);
+  color: white;
+}
+
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+.task-item {
+  background: #6d72c3;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: opacity 0.2s;
+}
+.task-item.is-overdue {
+  border-color: #d85a30;
+  background: #faece7;
+}
+
+
+.custom-cb {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 1px black;
+  background: white;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+.custom-cb.checked {
+  background: #534ab7;
+  border-color: #534ab7;
+  align-content: center;
+}
+.custom-cb i {
+  font-size: 12px;
+  color: white;
+  display: none;
+  justify-content: center;
+  align-content: center;
+}
+.custom-cb.checked i {
+  display: block;
+}
+
+
+.task-body {
+  flex: 1;
+  min-width: 0;
+}
+.task-text {
+  font-size: 14px;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  word-break: break-word;
+}
+.task-text.crossed {
+  text-decoration: line-through;
+  color: var(--color-text-tertiary);
+}
+.task-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+.prio-tag {
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 20px;
+}
+.prio-low {
+  background: #eaf3de;
+  color: #27500a;
+}
+.prio-medium {
+  background: #faeeda;
+  color: #633806;
+}
+.prio-high {
+  background: #faece7;
+  color: #4a1b0c;
+}
+.due-tag {
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 20px;
+  background: var(--color-background-secondary);
+  border: 0.5px solid var(--color-border-tertiary);
+  color: var(--color-text-secondary);
+}
+.overdue-tag {
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 20px;
+  background: #f7c1c1;
+  border: 0.5px solid #e24b4a;
+  color: #501313;
+  font-weight: 500;
+}
+
+.del-btn {
+  background: red;
+  border: none;
+  cursor: pointer;
+  color: white;
+  padding: 8px 12px;
+  font-size: 14px;
+  line-height: 1;
+  transition: all 0.15s;
+  flex-shrink: 0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+.del-btn:hover {
+  background: darkred;
+  transform: scale(1.05);
+}
+
+.done-section {
+  margin-top: 0.5rem;
+}
+.done-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.empty-state {
+  padding: 1.5rem 0;
+  text-align: center;
+  color: var(--color-text-tertiary);
+  font-size: 13px;
+}
+.divider {
+  border: none;
+  border-top: 0.5px solid var(--color-border-tertiary);
+  margin: 1.25rem 0;
+}
+
+.overdue-note {
+  font-size: 12px;
+  color: #993c1d;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 8px;
+  padding: 6px 10px;
+  background: #faece7;
+  border: 0.5px solid #d85a30;
+  border-radius: var(--border-radius-md);
+}

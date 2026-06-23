@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <div class="profile-card">
+        <div class="avatar">SY</div>
+        <div class="profile-info">
+          <p>Sofyan Yunianto</p>
+          <p>Fullstack Developer</p>
+        </div>
+        <div class="time-box">
+          <div class="time-day" id="day-label"></div>
+          <div class="time-date" id="date-label"></div>
+        </div>
+      </div>
+
+      <div class="input-card">
+        <label for="task-input">Tugas baru</label>
+        <textarea
+          id="task-input"
+          placeholder="Tuliskan tugas yang perlu dikerjakan..."
+        ></textarea>
+        <div class="row2">
+          <div class="field-group">
+            <label>Deadline</label>
+            <input type="date" id="due-date" />
+          </div>
+          <div class="field-group" style="flex: 2">
+            <label>Prioritas</label>
+            <div class="priority-row">
+              <button
+                class="prio-btn"
+                data-prio="low"
+                onclick="selectPrio(this)"
+              >
+                <i class="ti ti-leaf" aria-hidden="true"></i> Low
+              </button>
+              <button
+                class="prio-btn"
+                data-prio="medium"
+                onclick="selectPrio(this)"
+              >
+                <i class="ti ti-flame" aria-hidden="true"></i> Medium
+              </button>
+              <button
+                class="prio-btn"
+                data-prio="high"
+                onclick="selectPrio(this)"
+              >
+                <i class="ti ti-bolt" aria-hidden="true"></i> High
+              </button>
+            </div>
+          </div>
+        </div>
+        <button class="submit-btn" onclick="addTask()">
+          <i class="ti ti-plus" aria-hidden="true"></i> Tambahkan tugas
+        </button>
+      </div>
+
+      <div class="section-header">
+        <span class="section-title">
+          <i class="ti ti-list-check" aria-hidden="true"></i>
+          Tugas aktif
+          <span class="count-badge" id="active-count">0</span>
+          <span class="overdue-badge" id="overdue-count" style="display: none"
+            >0 overdue</span
+          >
+        </span>
+        <button class="delete-all-btn" onclick="deleteAll()">
+          <i class="ti ti-trash" aria-hidden="true"></i> Hapus semua
+        </button>
+      </div>
+
+
+      <div id="overdue-note" class="overdue-note" style="display: none">
+        <i class="ti ti-alert-circle" aria-hidden="true"></i>
+        <span id="overdue-note-text"></span>
+      </div>
+      <div class="tasks-list" id="active-list"></div>
+
+      <hr class="divider" />
+
+      <div class="done-section">
+        <div class="section-header">
+          <span class="section-title"
+            ><i class="ti ti-circle-check" aria-hidden="true"></i> Selesai
+            <span class="count-badge" id="done-count">0</span></span
+          >
+        </div>
+        <div class="done-list" id="done-list"></div>
+      </div>
+    </div>
+    <script src="script.js" />
+  </body>
+</html>
