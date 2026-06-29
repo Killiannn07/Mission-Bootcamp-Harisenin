@@ -1,10 +1,12 @@
 import React from "react";
-import { AuthForm } from "../Components/layout/AuthForm";
+import { AuthForm } from "../Components/ui/AuthForm";
+import { AuthLayout } from "../Components/layout/AuthLayout";
+import LoginBg from "/background-login.jpg"
 
 export const LoginPage = () => {
   return (
-    <div className="min-h-screen w-full bg-[url('/background-login.jpg')] bg-cover bg-center bg-no-repeat flex items-center justify-center">
-      <AuthForm type="login" />
-    </div>
+    <AuthLayout background={LoginBg}>
+      <AuthForm type={"login"}/>
+    </AuthLayout>
   );
 };

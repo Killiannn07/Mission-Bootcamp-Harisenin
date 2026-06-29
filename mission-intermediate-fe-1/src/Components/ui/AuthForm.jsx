@@ -1,22 +1,23 @@
 import React, { useState } from "react";
 import MovieLogo from "../../assets/logo/movie-open.svg";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import Chill from "../../assets/logo/CHILL.svg";
-import { GoogleButton } from "../ui/GoogleButton";
+import { GoogleButton } from "./GoogleButton";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Button from "./Button";
 
 export const AuthForm = ({ type }) => {
   const isLogin = type === "login";
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   const handleSubmit = () => {
     if (isLogin) {
-      navigate("/")
-    } else{
-      navigate("/login")
+      navigate("/");
+    } else {
+      navigate("/login");
     }
-  }
+  };
 
   return (
     <div className="bg-background opacity-84 flex flex-col rounded-lg w-lg p-5 mx-6 md:p-10 ">
@@ -106,13 +107,12 @@ export const AuthForm = ({ type }) => {
       )}
 
       <div>
-        <button
-          className="w-full h-12 border border-bdr rounded-3xl bg-btn-secondary cursor-pointer"
-          onClick={handleSubmit}
-        >
+        <Button variant="auth" onClick={handleSubmit}>
           {isLogin ? "Masuk" : "Daftar"}
-        </button>
-        <p>Atau</p>
+        </Button>
+        <p className="text-10 md:text-lg text-text-secondary my-1 md:my-2 ">
+          Atau
+        </p>
         {isLogin ? (
           <GoogleButton text="Masuk dengan Google" />
         ) : (

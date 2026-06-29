@@ -5,11 +5,11 @@
   --color-text-primary: #ffffff;
   --color-text-secondary: #c1c2c4;
   --color-btn-primary: #0f1e93;
-  --color-btn-primary-hover: #09147a;
-  --color-btn-secondary: #3d4142;
-  --color-btn-secondary-hover: #22282a;
+  --color-btn-primary-hover: #3254FF;
+  --color-btn-secondary: #22282A;
+  --color-btn-secondary-hover: #3d4142;
   --color-bdr: #e7e3fc3b;
-
+  --background-image-hero: url('./assets/images/hero.png');
   --text-10: 10px;
 }
 
