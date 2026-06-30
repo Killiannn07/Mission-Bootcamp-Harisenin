@@ -38,6 +38,7 @@ export const Navbar = () => {
       </div>
       {/* right side */}
       <div className="relative flex items-center" ref={dropDownRef}>
+        
         <button
           className="cursor-pointer flex items-center gap-1"
           onClick={() => setIsOpen(!isOpen)}
@@ -49,9 +50,10 @@ export const Navbar = () => {
           />
           <IoIosArrowDown size={30} />
         </button>
+        {isOpen && <ProfileDropdown />}
       </div>
 
-      {isOpen && <ProfileDropdown />}
+      
     </nav>
   );
 };
