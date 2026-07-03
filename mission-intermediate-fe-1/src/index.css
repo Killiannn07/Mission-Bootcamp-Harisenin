@@ -9,7 +9,7 @@
   --color-btn-secondary: #22282A;
   --color-btn-secondary-hover: #3d4142;
   --color-bdr: #e7e3fc3b;
-  --background-image-hero: url('./assets/images/hero.png');
+  --background-image-hero: url('/images/hero.png');
   --text-10: 10px;
 }
 

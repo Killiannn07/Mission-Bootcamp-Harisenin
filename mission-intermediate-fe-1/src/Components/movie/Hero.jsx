@@ -1,5 +1,5 @@
 import React from "react";
-import heroBg from "../../assets/images/hero.png";
+
 import Button from "../ui/Button";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { PiSpeakerSlash } from "react-icons/pi";

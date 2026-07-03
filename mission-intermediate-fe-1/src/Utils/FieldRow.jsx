@@ -9,7 +9,7 @@ export const FieldRow = ({ label, initialValue, editable, type = "text" }) => {
   return (
     <div className="bg-neutral-800/60 rounded-lg px-4 py-2.5 flex items-center justify-between">
       <div className="flex-1">
-        <p className="text-neutral-400 text-xs">{label}</p>
+        <p className="text-neutral-400 text-left text-xs">{label}</p>
         {isEditing ? (
           <input
             
@@ -21,7 +21,7 @@ export const FieldRow = ({ label, initialValue, editable, type = "text" }) => {
             className="bg-transparent text-white text-sm font-medium outline-none border-b border-blue-500 w-full"
           />
         ) : (
-          <p className="text-white text-sm font-medium">
+          <p className="text-white text-sm font-medium text-left">
             {displayValue}
           </p>
         )}
