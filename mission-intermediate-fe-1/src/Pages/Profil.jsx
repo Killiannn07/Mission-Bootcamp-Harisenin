@@ -19,7 +19,6 @@ export const ProfilPage = () => {
         <div className="flex flex-col-reverse md:flex-row gap-6 items-start justify-between">
           {/* Kolom kiri: Form Profil */}
           <div className=" w-full md:max-w-[50%] md:flex-1 space-y-8">
-            {/* Avatar + Ubah Foto */}
             <div className="flex items-center gap-6">
               <img
                 src="/avatar.png"
@@ -75,7 +74,10 @@ export const ProfilPage = () => {
         </div>
       </div>
       <div className="py-1.5 px-5 md:py-6 md:px-20">
-        <h2 className="text-xl font-semibold mb-4">Daftar Saya</h2>
+        <div className="flex justify-between items-center">
+          <h2 className="text-lg md:text-3xl font-semibold mb-4">Daftar Saya</h2>
+          <a href="/daftarfilm" className="text-lg hover:underline hidden md:flex">Lihat Semua</a>
+        </div>
         <div className="grid grid-cols-3 gap-4 md:grid-cols-4 lg:grid-cols-6">
           {movies.slice(0, 6).map((movieItem) => (
             <MovieCardPotrait key={movieItem.id} {...movieItem} />

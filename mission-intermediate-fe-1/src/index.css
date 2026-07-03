@@ -11,6 +11,7 @@
   --color-bdr: #e7e3fc3b;
   --background-image-hero: url('/images/hero.png');
   --text-10: 10px;
+  --breakpoint-sm: 20rem;
 }
 
 :root {
