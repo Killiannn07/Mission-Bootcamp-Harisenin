@@ -4,7 +4,7 @@ export default function Button({
   children,
   variant = "primary",
   className = "",
-  ...props
+  ...onclick
 }) {
   const variants = {
     primary: "bg-btn-primary text-white",
@@ -13,7 +13,7 @@ export default function Button({
   };
   return (
     <button
-      {...props}
+      {...onclick}
       className={`
         flex
         items-center
