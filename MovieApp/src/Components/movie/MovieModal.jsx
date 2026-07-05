@@ -40,7 +40,7 @@ const MovieModal = ({ open, onClose, onSave, selectedMovie }) => {
       ageRating: "13+",
       duration: "",
       genres: "",
-      badge: null,
+      badge: "",
       topTen: false,
       type: "film",
       newRelease: false,
@@ -54,7 +54,9 @@ const MovieModal = ({ open, onClose, onSave, selectedMovie }) => {
     "./images/potrait4.png",
     "./images/potrait5.png",
     "./images/potrait6.png",
-    "./images/potrait7.png",
+    "./images/potrait8.png",
+    "./images/potrait9.png",
+    "./images/potrait10.png",
   ];
 
   return (
@@ -158,14 +160,21 @@ const MovieModal = ({ open, onClose, onSave, selectedMovie }) => {
               name="newRelease"
               checked={formData.newRelease}
               onChange={handleChange}
-              
+            />
+
+            <label>New Episode</label>
+          </div>
+          <div className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              name="badge"
+              checked={formData.badge}
+              onChange={handleChange}
             />
 
             <label>New Release</label>
           </div>
-          <Button type="submit">
-            {selectedMovie ? "Update" : "Simpan"}
-          </Button>
+          <Button type="submit">{selectedMovie ? "Update" : "Simpan"}</Button>
         </form>
       </div>
     </div>

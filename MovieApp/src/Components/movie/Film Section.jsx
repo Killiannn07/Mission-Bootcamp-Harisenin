@@ -11,7 +11,10 @@ export const FilmSection = ({ text, movie }) => {
         items={movie}
         scrollAmount={210}
         renderCard={(movie) => (
-          <div key={movie.id} className="shrink-0 w-24 md:w-56 aspect-video">
+          <div
+            key={movie.id}
+            className="shrink-0 w-24 md:w-56  relative z-0 overflow-visible transition-transform duration-300 hover:z-50 hover:-translate-y-2"
+          >
             <MovieCardPotrait {...movie} />
           </div>
         )}

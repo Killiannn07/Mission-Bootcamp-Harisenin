@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MainLayout } from "../Components/layout/MainLayout";
 import { Hero } from "../Components/movie/Hero";
 import { ContinueMovie } from "../Components/movie/ContinueMovie";
@@ -6,9 +6,15 @@ import { FilmSection } from "../Components/movie/Film Section";
 import { movies } from "../data/movie";
 import { ManageMovieSection } from "../Components/movie/ManageMovieSection";
 import MovieModal from "../Components/movie/MovieModal";
+import {
+  createMovie,
+  deleteMovie,
+  getMovie,
+  updateMovie,
+} from "../Services/movieService";
 
 export const HomePage = () => {
-  const [movieList, setMovieList] = useState(movies);
+  const [movieList, setMovieList] = useState([]);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -22,49 +28,55 @@ export const HomePage = () => {
 
   const series = movieList.filter((movie) => movie.type === "series");
 
-  const handleSaveMovie = (movieData) => {
+  const handleSaveMovie = async (movieData) => {
     const movie = {
       ...movieData,
       genres: movieData.genres.split(",").map((genre) => genre.trim()),
       episodes: movieData.type === "series" ? 16 : null,
       duration: movieData.type === "film" ? movieData.duration : null,
-      badge: null,
+      badge: movieData.badge ? "New episode" : null,
     };
 
-    if (selectedMovie) {
-      // UPDATE
-      setMovieList((prev) =>
-        prev.map((item) =>
-          item.id === selectedMovie.id
-            ? {
-                ...movie,
-                id: selectedMovie.id,
-              }
-            : item,
-        ),
-      );
-    } else {
-      // CREATE
-      setMovieList((prev) => [
-        ...prev,
-        {
-          ...movie,
-          id: Date.now(),
-        },
-      ]);
-    }
+    try {
+      if (selectedMovie) {
+        await updateMovie(selectedMovie.id, movie);
+      } else {
+        await createMovie(movie);
+      }
 
-    setShowModal(false);
-    setSelectedMovie(null);
+      await fetchMovie();
+
+      setShowModal(false);
+      setSelectedMovie(null);
+    } catch (error) {
+      console.log("Gagal save movie", error);
+    }
   };
 
-  const handleDeleteMovie = (id) => {
-    console.log("delete", id);
-    setMovieList((prev) => prev.filter((movie) => movie.id !== id));
+  const fetchMovie = async () => {
+    try {
+      const data = await getMovie();
+
+      setMovieList(data);
+    } catch (error) {
+      console.log("Gagal load movie", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchMovie();
+  });
+
+  const handleDeleteMovie = async (id) => {
+    try {
+      await deleteMovie(id);
+      await fetchMovie();
+    } catch (error) {
+      console.log("Gagal delete", error);
+    }
   };
 
   const handleEditMovie = (movie) => {
-    console.log("edit", movie);
     setSelectedMovie(movie);
     setShowModal(true);
   };
@@ -72,7 +84,7 @@ export const HomePage = () => {
   return (
     <MainLayout>
       <Hero />
-      <ContinueMovie />
+      <ContinueMovie movies={series} />
       <FilmSection text="Top Film dan Series Hari ini" movie={films} />
       <FilmSection text="Film Trending" movie={topTen} />
       <FilmSection text="Rilis Baru" movie={newRelease} />
