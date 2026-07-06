@@ -3,18 +3,16 @@ import { MainLayout } from "../Components/layout/MainLayout";
 import { Hero } from "../Components/movie/Hero";
 import { ContinueMovie } from "../Components/movie/ContinueMovie";
 import { FilmSection } from "../Components/movie/Film Section";
-import { movies } from "../data/movie";
 import { ManageMovieSection } from "../Components/movie/ManageMovieSection";
 import MovieModal from "../Components/movie/MovieModal";
-import {
-  createMovie,
-  deleteMovie,
-  getMovie,
-  updateMovie,
-} from "../Services/movieService";
+import { deleteMovie } from "../Services/movieService";
+import { useDispatch, useSelector } from "react-redux";
+import { addMovies, deleteMovies, editMovies, fetchMovies } from "../redux/movieSlice";
 
 export const HomePage = () => {
-  const [movieList, setMovieList] = useState([]);
+  const dispatch = useDispatch();
+
+  const { movieList, loading, error } = useSelector((state) => state.movie);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -34,18 +32,16 @@ export const HomePage = () => {
       genres: movieData.genres.split(",").map((genre) => genre.trim()),
       episodes: movieData.type === "series" ? 16 : null,
       duration: movieData.type === "film" ? movieData.duration : null,
-      badge: movieData.badge ? "New episode" : null,
+      badge: movieData.badge ? true : false,
+      newRelease: movieData.newRelease ? true : false,
     };
 
     try {
       if (selectedMovie) {
-        await updateMovie(selectedMovie.id, movie);
+        await dispatch(editMovies({id: selectedMovie.id, movie}));
       } else {
-        await createMovie(movie);
+        await dispatch(addMovies(movie));
       }
-
-      await fetchMovie();
-
       setShowModal(false);
       setSelectedMovie(null);
     } catch (error) {
@@ -53,24 +49,13 @@ export const HomePage = () => {
     }
   };
 
-  const fetchMovie = async () => {
-    try {
-      const data = await getMovie();
-
-      setMovieList(data);
-    } catch (error) {
-      console.log("Gagal load movie", error);
-    }
-  };
-
   useEffect(() => {
-    fetchMovie();
-  });
+    dispatch(fetchMovies());
+  }, [dispatch]);
 
   const handleDeleteMovie = async (id) => {
     try {
-      await deleteMovie(id);
-      await fetchMovie();
+      await dispatch(deleteMovies(id));
     } catch (error) {
       console.log("Gagal delete", error);
     }

@@ -27,7 +27,7 @@ export const MovieCardPotrait = ({
 
         {badge && (
           <span className="absolute left-2 top-2 rounded-sm bg-btn-primary px-1.5 py-0.5 text-[10px] font-bold leading-none text-white">
-            {badge}
+            New Episode
           </span>
         )}
 

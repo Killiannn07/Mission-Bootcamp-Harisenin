@@ -12,7 +12,7 @@ const MovieModal = ({ open, onClose, onSave, selectedMovie }) => {
     ageRating: "13+",
     duration: "",
     genres: "",
-    badge: null,
+    badge: false,
     topTen: false,
     type: "film",
     newRelease: false,
@@ -40,7 +40,7 @@ const MovieModal = ({ open, onClose, onSave, selectedMovie }) => {
       ageRating: "13+",
       duration: "",
       genres: "",
-      badge: "",
+      badge: false,
       topTen: false,
       type: "film",
       newRelease: false,
@@ -75,7 +75,7 @@ const MovieModal = ({ open, onClose, onSave, selectedMovie }) => {
             value={formData.title}
             onChange={handleChange}
             className="w-full p-3 rounded bg-zinc-800"
-            required
+            
           />
 
           <select
@@ -162,7 +162,7 @@ const MovieModal = ({ open, onClose, onSave, selectedMovie }) => {
               onChange={handleChange}
             />
 
-            <label>New Episode</label>
+            <label>New Release</label>
           </div>
           <div className="flex items-center gap-2">
             <input
@@ -172,7 +172,7 @@ const MovieModal = ({ open, onClose, onSave, selectedMovie }) => {
               onChange={handleChange}
             />
 
-            <label>New Release</label>
+            <label>New Episode</label>
           </div>
           <Button type="submit">{selectedMovie ? "Update" : "Simpan"}</Button>
         </form>
