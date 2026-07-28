@@ -1,9 +1,9 @@
-import pkg from "pg";
+import pg from "pg";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const { Pool } = pkg;
+const { Pool } = pg;
 
 const pool = new Pool({
   host: process.env.DB_HOST,
@@ -13,7 +13,5 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
 });
 
-const result = await pool.query("SELECT NOW()");
-console.log(result.rows);
 
 export default pool;
