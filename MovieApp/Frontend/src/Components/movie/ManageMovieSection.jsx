@@ -2,7 +2,7 @@ import React from "react";
 import { ManageMovieCard } from "./ManageMovieCard";
 import Button from "../ui/Button";
 
-export const ManageMovieSection = ({ movieList, onAdd, onEdit, onDelete }) => {
+export const ManageMovieSection = ({ movieList, onAdd,   onEdit, onDelete }) => {
   return (
     <section className="px-5 md:px-20 py-10">
       <div className="flex justify-between mb-6">

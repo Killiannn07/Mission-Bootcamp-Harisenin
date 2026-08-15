@@ -4,10 +4,17 @@ import chill from "../../assets/logo/CHILL.svg";
 import { IoIosArrowDown } from "react-icons/io";
 import avatar from "/avatar.png";
 import { ProfileDropdown } from "./ProfileDropdown";
+import { getCurrentUser } from "../../Services/authService";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState(null);
   const dropDownRef = useRef(null);
+
+  useEffect(() => {
+    const currentUser = getCurrentUser();
+    setUser(currentUser);
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -37,8 +44,12 @@ export const Navbar = () => {
         </ul>
       </div>
       {/* right side */}
-      <div className="relative flex items-center" ref={dropDownRef}>
-        
+      <div className="relative flex items-center gap-3" ref={dropDownRef}>
+        {user && (
+          <span className="text-sm md:text-base text-gray-300">
+            {user.name || user.email}
+          </span>
+        )}
         <button
           className="cursor-pointer flex items-center gap-1"
           onClick={() => setIsOpen(!isOpen)}

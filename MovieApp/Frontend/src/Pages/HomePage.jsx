@@ -8,9 +8,11 @@ import MovieModal from "../Components/movie/MovieModal";
 import { deleteMovie } from "../Services/movieService";
 import { useDispatch, useSelector } from "react-redux";
 import { addMovies, deleteMovies, editMovies, fetchMovies } from "../redux/movieSlice";
+import { getCurrentUser } from "../Services/authService";
 
 export const HomePage = () => {
   const dispatch = useDispatch();
+  const [user, setUser] = useState(null);
 
   const { movieList, loading, error } = useSelector((state) => state.movie);
 
@@ -25,6 +27,9 @@ export const HomePage = () => {
   const newRelease = movieList.filter((movie) => movie.newRelease);
 
   const series = movieList.filter((movie) => movie.type === "series");
+
+  // Check if user is admin
+  const isAdmin = user?.role === "admin";
 
   const handleSaveMovie = async (movieData) => {
     const movie = {
@@ -51,6 +56,8 @@ export const HomePage = () => {
 
   useEffect(() => {
     dispatch(fetchMovies());
+    const currentUser = getCurrentUser();
+    setUser(currentUser);
   }, [dispatch]);
 
   const handleDeleteMovie = async (id) => {
@@ -73,15 +80,17 @@ export const HomePage = () => {
       <FilmSection text="Top Film dan Series Hari ini" movie={films} />
       <FilmSection text="Film Trending" movie={topTen} />
       <FilmSection text="Rilis Baru" movie={newRelease} />
-      <ManageMovieSection
-        movieList={movieList}
-        onAdd={() => {
-          setSelectedMovie(null);
-          setShowModal(true);
-        }}
-        onEdit={handleEditMovie}
-        onDelete={handleDeleteMovie}
-      />
+      {isAdmin && (
+        <ManageMovieSection
+          movieList={movieList}
+          onAdd={() => {
+            setSelectedMovie(null);
+            setShowModal(true);
+          }}
+          onEdit={handleEditMovie}
+          onDelete={handleDeleteMovie}
+        />
+      )}
       <MovieModal
         open={showModal}
         onClose={() => {

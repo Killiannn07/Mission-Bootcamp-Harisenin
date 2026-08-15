@@ -61,6 +61,7 @@ const movieSlice = createSlice({
         state.error = null;
       })
       .addCase(addMovies.fulfilled, (state, action) => {
+        state.loading = false;
         state.movieList.push(action.payload);
         state.error = null;
       })

@@ -29,3 +29,51 @@ export const login = async (req, res, next) => {
     next(err);
   }
 };
+
+export const verifyEmail = async (req, res, next) => {
+  try {
+    const { token } = req.query;
+
+    if (!token) {
+      throw new AppError("Verification token is required", 400);
+    }
+
+    const user = await authService.verifyEmail(token);
+
+    return res.status(200).json({
+      success: true,
+      message: "Email verified successfully",
+      data: user,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const forgotPassword = async (req, res, next) => {
+  try {
+    await authService.forgotPassword(req.body.email);
+
+    return res.status(200).json({
+      success: true,
+      message: "If the email exists, a password reset link has been sent.",
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const resetPassword = async (req, res, next) => {
+  try {
+    const { token, password } = req.body;
+
+    await authService.resetPassword(token, password);
+
+    return res.status(200).json({
+      success: true,
+      message: "Password reset successfully",
+    });
+  } catch (err) {
+    next(err);
+  }
+};

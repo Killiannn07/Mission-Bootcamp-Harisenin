@@ -6,17 +6,44 @@ import { HomePage } from "../Pages/HomePage";
 import { ProfilPage } from "../Pages/Profil";
 import { DaftarFilm } from "../Pages/DaftarFilm";
 import { Langganan } from "../Pages/Langganan";
+import { ProtectedRoute } from "./ProtectedRoute";
+import VerifyEmail from "../Pages/VerifyEmail";
+import ForgotPassword from "../Pages/ForgotPassword";
+import ResetPassword from "../Pages/resetPassword";
 
 export const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage/>} />
-      <Route path="/" element={<HomePage/>} />
-      <Route path="/profil" element={<ProfilPage/>} />
-      <Route path="/daftarfilm" element={<DaftarFilm/>} />
-      <Route path="/Subscription" element={<Langganan/>} />
-
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="/verify-email" element={<VerifyEmail />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route
+        path="/profil"
+        element={
+          <ProtectedRoute>
+            <ProfilPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/daftarfilm"
+        element={
+          <ProtectedRoute>
+            <DaftarFilm />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/Subscription"
+        element={
+          <ProtectedRoute>
+            <Langganan />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 };
