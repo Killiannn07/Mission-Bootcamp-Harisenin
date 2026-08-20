@@ -4,7 +4,9 @@ import { successResponse, errorResponse } from "../utils/response.js";
 
 export const getAllMovie = async (req, res, next) => {
   try {
-    const content = await contentService.getAllMovie();
+    const { search = "" } = req.query;
+
+    const content = await contentService.getAllMovie(search);
 
     const movie = content.map(mapContent);
     return successResponse(res, "Movie fetched", movie, 200);

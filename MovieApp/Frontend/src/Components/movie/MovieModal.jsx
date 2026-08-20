@@ -1,22 +1,48 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../ui/Button";
 
-const MovieModal = ({ open, onClose, onSave, selectedMovie }) => {
-  if (!open) return null;
+const emptyForm = {
+  title: "",
+  image: "",
+  rating: "",
+  year: "",
+  ageRating: "13+",
+  duration: "",
+  genres: "",
+  badge: false,
+  topTen: false,
+  type: "movie",
+  newRelease: false,
+};
 
-  const [formData, setFormData] = useState({
-    title: "",
-    image: "",
-    rating: "",
-    year: "",
-    ageRating: "13+",
-    duration: "",
-    genres: "",
-    badge: false,
-    topTen: false,
-    type: "film",
-    newRelease: false,
-  });
+const MovieModal = ({ open, onClose, onSave, selectedMovie }) => {
+  const [formData, setFormData] = useState(emptyForm);
+
+  useEffect(() => {
+    if (selectedMovie) {
+      setFormData({
+        title: selectedMovie.title ?? "",
+        image: selectedMovie.image ?? "",
+        rating: selectedMovie.rating ?? "",
+        year: selectedMovie.year ?? "",
+        ageRating: selectedMovie.ageRating ?? "13+",
+        duration: selectedMovie.duration ?? "",
+
+        genres: Array.isArray(selectedMovie.genres)
+          ? selectedMovie.genres.join(", ")
+          : (selectedMovie.genres ?? ""),
+
+        badge: Boolean(selectedMovie.badge),
+        topTen: Boolean(selectedMovie.topTen),
+        type: selectedMovie.type ?? "movie",
+        newRelease: Boolean(selectedMovie.newRelease),
+      });
+    } else {
+      setFormData(emptyForm);
+    }
+  }, [selectedMovie]);
+
+  if (!open) return null;
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -29,22 +55,26 @@ const MovieModal = ({ open, onClose, onSave, selectedMovie }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const imageUrl = formData.image.startsWith("http")
+      ? formData.image
+      : `${window.location.origin}/${formData.image.replace("./", "")}`;
+    const movieData = {
+      ...formData,
 
-    onSave(formData);
+      image: imageUrl,
 
-    setFormData({
-      title: "",
-      image: "",
-      rating: "",
-      year: "",
-      ageRating: "13+",
-      duration: "",
-      genres: "",
-      badge: false,
-      topTen: false,
-      type: "film",
-      newRelease: false,
-    });
+      rating: Number(formData.rating),
+      year: Number(formData.year),
+      duration: Number(formData.duration),
+
+      genres: formData.genres
+        .split(",")
+        .map((genre) => genre.trim())
+        .filter(Boolean),
+
+      badge: formData.badge ? "New Episode" : null,
+    };
+    onSave(movieData);
   };
 
   const posterOptions = [
@@ -75,7 +105,6 @@ const MovieModal = ({ open, onClose, onSave, selectedMovie }) => {
             value={formData.title}
             onChange={handleChange}
             className="w-full p-3 rounded bg-zinc-800"
-            
           />
 
           <select
@@ -124,9 +153,9 @@ const MovieModal = ({ open, onClose, onSave, selectedMovie }) => {
           />
 
           <input
-            type="text"
+            type="number"
             name="duration"
-            placeholder="Durasi"
+            placeholder="Durasi (menit)"
             value={formData.duration}
             onChange={handleChange}
             className="w-full p-3 rounded bg-zinc-800"
@@ -150,7 +179,7 @@ const MovieModal = ({ open, onClose, onSave, selectedMovie }) => {
             className="w-full p-3 rounded bg-zinc-800"
             required
           >
-            <option value="film">Film</option>
+            <option value="movie">Film</option>
             <option value="series">Series</option>
           </select>
 

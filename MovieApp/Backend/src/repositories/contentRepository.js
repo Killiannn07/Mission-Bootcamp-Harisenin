@@ -1,6 +1,6 @@
 import pool from "../config/db.js";
 
-export const findAll = async () => {
+export const findAll = async (search = "") => {
   const query = `
         SELECT
             c.id,
@@ -29,13 +29,25 @@ export const findAll = async () => {
 
         LEFT JOIN genre g
             ON cg.genre_id = g.id
+        
+        WHERE
+          $1 = ''
+          OR c.title ILIKE '%' || $1 || '%'
+          OR EXISTS (
+        SELECT 1
+        FROM genre sg
+        JOIN content_genre scg
+          ON sg.id = scg.genre_id
+        WHERE scg.content_id = c.id
+          AND sg.name ILIKE '%' || $1 || '%'
+      )
 
         GROUP BY c.id
 
         ORDER BY c.id;
     `;
 
-  const result = await pool.query(query);
+  const result = await pool.query(query, [search.trim()]);
 
   return result.rows;
 };
@@ -188,15 +200,15 @@ export const updateContent = async (client, id, data) => {
 };
 
 export const deleteContentGenre = async (client, contentId) => {
-  const query = `DELETE from content_genre WHERE content_id= $1`
+  const query = `DELETE from content_genre WHERE content_id= $1`;
 
-  const result = await client.query(query, [contentId])
-}
+  const result = await client.query(query, [contentId]);
+};
 
 export const deleteContent = async (client, id) => {
-  const query = `DELETE from content WHERE id = $1 RETURNING *`
+  const query = `DELETE from content WHERE id = $1 RETURNING *`;
 
-  const result = await client.query(query, [id])
+  const result = await client.query(query, [id]);
 
-  return result.rows[0]
-}
+  return result.rows[0];
+};

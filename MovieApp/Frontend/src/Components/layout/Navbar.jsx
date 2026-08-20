@@ -5,16 +5,24 @@ import { IoIosArrowDown } from "react-icons/io";
 import avatar from "/avatar.png";
 import { ProfileDropdown } from "./ProfileDropdown";
 import { getCurrentUser } from "../../Services/authService";
+import { useDispatch } from "react-redux";
+import { fetchMovies } from "../../redux/movieSlice";
 
 export const Navbar = () => {
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(null);
   const dropDownRef = useRef(null);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const currentUser = getCurrentUser();
     setUser(currentUser);
   }, []);
+
+  useEffect(() => {
+    dispatch(fetchMovies(search));
+  },[dispatch, search]);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -39,9 +47,20 @@ export const Navbar = () => {
         </div>
         <ul className="flex gap-3 md:gap-10 items-center text-10 md:text-lg">
           <li className="cursor-pointer hover:underline">Series</li>
-          <li className="cursor-pointer hover:underline">Film</li>
-          <li className="cursor-pointer hover:underline">Daftar Saya</li>
+          <li className="cursor-pointer hover:underline">
+            <a href="/film">Film</a>
+          </li>
+          <li className="cursor-pointer hover:underline" href="/daftarfilm">
+            <a href="/daftarfilm"> Daftar Saya</a>
+          </li>
         </ul>
+        <input
+          type="text"
+          placeholder="Cari film..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="bg-zinc-800 md:w-lg px-4 py-2 rounded-lg"
+        />
       </div>
       {/* right side */}
       <div className="relative flex items-center gap-3" ref={dropDownRef}>
@@ -63,8 +82,6 @@ export const Navbar = () => {
         </button>
         {isOpen && <ProfileDropdown />}
       </div>
-
-      
     </nav>
   );
 };

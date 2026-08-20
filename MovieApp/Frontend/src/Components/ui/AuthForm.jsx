@@ -42,7 +42,12 @@ export const AuthForm = ({ type }) => {
         return false;
       }
     } else {
-      if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
+      if (
+        !formData.name ||
+        !formData.email ||
+        !formData.password ||
+        !formData.confirmPassword
+      ) {
         setError("Semua field harus diisi");
         return false;
       }
@@ -82,7 +87,8 @@ export const AuthForm = ({ type }) => {
         navigate("/verify-email");
       }
     } catch (err) {
-      const errorMessage = err.message || err.data?.message || "Terjadi kesalahan";
+      const errorMessage =
+        err.message || err.data?.message || "Terjadi kesalahan";
       setError(errorMessage);
       console.error("Auth error:", err);
     } finally {
@@ -103,94 +109,54 @@ export const AuthForm = ({ type }) => {
         {isLogin ? "Selamat datang kembali!" : "Selamat Datang!"}
       </h2>
 
-      <div>
-        {!isLogin && (
-          <div>
-            <p className="font-medium text-left mb-1 text-10 md:text-lg mt-5 md:mt-10">
-              Nama
-            </p>
-            <input
-              className="w-full border border-bdr rounded-3xl px-3 py-1 md:p-3 box-border"
-              name="name"
-              type="text"
-              placeholder="Masukkan Nama"
-              value={formData.name}
-              onChange={handleInputChange}
-              disabled={loading}
-            />
-          </div>
-        )}
-        <p className="font-medium text-left mb-1 text-10 md:text-lg mt-5 md:mt-10">
-          Email
-        </p>
-        <input
-          className="w-full border border-bdr rounded-3xl px-3 py-1 md:p-3 box-border"
-          name="email"
-          type="email"
-          placeholder="Masukkan Email"
-          value={formData.email}
-          onChange={handleInputChange}
-          disabled={loading}
-        />
-      </div>
-      <div>
-        <p className="font-medium text-left mb-1 text-10 md:text-lg mt-5 md:mt-8">
-          Kata sandi
-        </p>
-        <div className="relative">
+      <form onSubmit={handleSubmit}>
+        <div>
+          {!isLogin && (
+            <div>
+              <p className="font-medium text-left mb-1 text-10 md:text-lg mt-5 md:mt-10">
+                Nama
+              </p>
+              <input
+                className="w-full border border-bdr rounded-3xl px-3 py-1 md:p-3 box-border"
+                name="name"
+                type="text"
+                placeholder="Masukkan Nama"
+                value={formData.name}
+                onChange={handleInputChange}
+                disabled={loading}
+                autoComplete="name"
+              />
+            </div>
+          )}
+          <p className="font-medium text-left mb-1 text-10 md:text-lg mt-5 md:mt-10">
+            Email
+          </p>
           <input
             className="w-full border border-bdr rounded-3xl px-3 py-1 md:p-3 box-border"
-            name="password"
-            type={showPassword ? "text" : "password"}
-            placeholder="Masukkan kata sandi"
-            value={formData.password}
+            name="email"
+            type="email"
+            placeholder="Masukkan Email"
+            value={formData.email}
             onChange={handleInputChange}
             disabled={loading}
+            autoComplete="email"
           />
-          <button
-            className="absolute right-4 top-1/2 -translate-y-1/2"
-            onClick={() => {
-              setShowPassword(!showPassword);
-            }}
-            type="button"
-          >
-            {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
-          </button>
         </div>
-      </div>
 
-      {error && (
-        <div className="bg-red-500/20 border border-red-500 rounded-lg p-3 my-4">
-          <p className="text-red-400 text-sm">{error}</p>
-        </div>
-      )}
-
-      {isLogin ? (
-        <div className="mb-5 md:mb-10 mt-1 flex justify-between">
-          <p className="text-10 md:text-[16px] text-left text-gray-400">
-            Belum punya akun?{" "}
-            <a href="/register" className="text-text-primary hover:underline">
-              Daftar
-            </a>
-          </p>
-          <a href="/forgot-password" className="text-10 md:text-[16px] hover:underline">
-            Lupa kata sandi?
-          </a>
-        </div>
-      ) : (
-        <div className="mb-5 md:mb-10">
+        <div>
           <p className="font-medium text-left mb-1 text-10 md:text-lg mt-5 md:mt-8">
-            Konfirmasi kata sandi
+            Kata sandi
           </p>
           <div className="relative">
             <input
               className="w-full border border-bdr rounded-3xl px-3 py-1 md:p-3 box-border"
-              name="confirmPassword"
+              name="password"
               type={showPassword ? "text" : "password"}
-              placeholder="Konfirmasi kata sandi"
-              value={formData.confirmPassword}
+              placeholder="Masukkan kata sandi"
+              value={formData.password}
               onChange={handleInputChange}
               disabled={loading}
+              autoComplete={isLogin ? "current-password" : "new-password"}
             />
             <button
               className="absolute right-4 top-1/2 -translate-y-1/2"
@@ -200,22 +166,69 @@ export const AuthForm = ({ type }) => {
               {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
             </button>
           </div>
-
-          <p className="text-10 md:text-[16px] text-left text-gray-400">
-            Sudah punya akun?{" "}
-            <a href="/login" className="text-text-primary hover:underline">
-              Masuk
-            </a>
-          </p>
         </div>
-      )}
+
+        {error && (
+          <div className="bg-red-500/20 border border-red-500 rounded-lg p-3 my-4">
+            <p className="text-red-400 text-sm">{error}</p>
+          </div>
+        )}
+
+        {isLogin ? (
+          <div className="mb-5 md:mb-10 mt-1 flex justify-between">
+            <p className="text-10 md:text-[16px] text-left text-gray-400">
+              Belum punya akun?{" "}
+              <a href="/register" className="text-text-primary hover:underline">
+                Daftar
+              </a>
+            </p>
+            <a
+              href="/forgot-password"
+              className="text-10 md:text-[16px] hover:underline"
+            >
+              Lupa kata sandi?
+            </a>
+          </div>
+        ) : (
+          <div className="mb-5 md:mb-10">
+            <p className="font-medium text-left mb-1 text-10 md:text-lg mt-5 md:mt-8">
+              Konfirmasi kata sandi
+            </p>
+            <div className="relative">
+              <input
+                className="w-full border border-bdr rounded-3xl px-3 py-1 md:p-3 box-border"
+                name="confirmPassword"
+                type={showPassword ? "text" : "password"}
+                placeholder="Konfirmasi kata sandi"
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
+                disabled={loading}
+                autoComplete="new-password"
+              />
+              <button
+                className="absolute right-4 top-1/2 -translate-y-1/2"
+                onClick={() => setShowPassword(!showPassword)}
+                type="button"
+              >
+                {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
+              </button>
+            </div>
+
+            <p className="text-10 md:text-[16px] text-left text-gray-400">
+              Sudah punya akun?{" "}
+              <a href="/login" className="text-text-primary hover:underline">
+                Masuk
+              </a>
+            </p>
+          </div>
+        )}
+
+        <Button variant="auth" type="submit" disabled={loading}>
+          {loading ? "Memproses..." : isLogin ? "Masuk" : "Daftar"}
+        </Button>
+      </form>
 
       <div>
-        <form onSubmit={handleSubmit}>
-          <Button variant="auth" type="submit" disabled={loading}>
-            {loading ? "Memproses..." : isLogin ? "Masuk" : "Daftar"}
-          </Button>
-        </form>
         <p className="text-10 md:text-lg text-text-secondary my-1 md:my-2">
           Atau
         </p>

@@ -11,3 +11,11 @@ Mission Advanced FE  integrasi api:
 4. Setup Redux ada di folder App/store.js
 5. InitialState dan Setup reducer ada di folder redux/movieSlice.js
 
+
+cara run
+1. Clone project
+2. Buat database movie_db
+3. Import database/movie_db.sql
+4. Buat .env backend
+5. npm install
+6. npm run dev

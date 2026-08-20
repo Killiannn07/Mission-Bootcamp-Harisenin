@@ -6,10 +6,13 @@ import {
   updateMovie,
 } from "../Services/movieService";
 
-export const fetchMovies = createAsyncThunk("movie/fetchMovies", async () => {
-  const data = await getMovie();
-  return data;
-});
+export const fetchMovies = createAsyncThunk(
+  "movie/fetchMovies",
+  async (search = "") => {
+    const data = await getMovie(search);
+    return data;
+  },
+);
 
 export const addMovies = createAsyncThunk("movie/addMovie", async (movie) => {
   const data = await createMovie(movie);

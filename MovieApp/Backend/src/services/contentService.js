@@ -2,8 +2,8 @@ import pool from "../config/db.js";
 import * as contentRepository from "../repositories/contentRepository.js";
 import AppError from "../utils/appError.js";
 
-export const getAllMovie = async () => {
-  const result = await contentRepository.findAll();
+export const getAllMovie = async (search = "") => {
+  const result = await contentRepository.findAll(search);
 
   return result;
 };

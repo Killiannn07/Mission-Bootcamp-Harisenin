@@ -10,12 +10,14 @@ import { ProtectedRoute } from "./ProtectedRoute";
 import VerifyEmail from "../Pages/VerifyEmail";
 import ForgotPassword from "../Pages/ForgotPassword";
 import ResetPassword from "../Pages/resetPassword";
+import { FilmPage } from "../Pages/FilmPage";
 
 export const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/film" element={<FilmPage />} />
       <Route path="/" element={<HomePage />} />
       <Route path="/verify-email" element={<VerifyEmail />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />

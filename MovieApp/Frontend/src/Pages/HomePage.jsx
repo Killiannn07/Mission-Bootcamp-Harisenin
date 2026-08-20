@@ -7,7 +7,12 @@ import { ManageMovieSection } from "../Components/movie/ManageMovieSection";
 import MovieModal from "../Components/movie/MovieModal";
 import { deleteMovie } from "../Services/movieService";
 import { useDispatch, useSelector } from "react-redux";
-import { addMovies, deleteMovies, editMovies, fetchMovies } from "../redux/movieSlice";
+import {
+  addMovies,
+  deleteMovies,
+  editMovies,
+  fetchMovies,
+} from "../redux/movieSlice";
 import { getCurrentUser } from "../Services/authService";
 
 export const HomePage = () => {
@@ -34,18 +39,17 @@ export const HomePage = () => {
   const handleSaveMovie = async (movieData) => {
     const movie = {
       ...movieData,
-      genres: movieData.genres.split(",").map((genre) => genre.trim()),
-      episodes: movieData.type === "series" ? 16 : null,
-      duration: movieData.type === "film" ? movieData.duration : null,
-      badge: movieData.badge ? true : false,
-      newRelease: movieData.newRelease ? true : false,
+      duration: Number(movieData.duration),
+      badge: movieData.badge ? "New Episode" : null,
+      newRelease: Boolean(movieData.newRelease),
+      topTen: Boolean(movieData.topTen),
     };
 
     try {
       if (selectedMovie) {
-        await dispatch(editMovies({id: selectedMovie.id, movie}));
+        await dispatch(editMovies({ id: selectedMovie.id, movie })).unwrap();
       } else {
-        await dispatch(addMovies(movie));
+        await dispatch(addMovies(movie)).unwrap();
       }
       setShowModal(false);
       setSelectedMovie(null);
@@ -62,7 +66,7 @@ export const HomePage = () => {
 
   const handleDeleteMovie = async (id) => {
     try {
-      await dispatch(deleteMovies(id));
+      await dispatch(deleteMovies(id)).unwrap();
     } catch (error) {
       console.log("Gagal delete", error);
     }
